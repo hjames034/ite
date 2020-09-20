@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Join ITE</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+<style>
+	body { margin: 0; padding: 0; }
+	.mapbox-srcd { width: 400px; height: 300px }
+.map {
+width: 400px;
+height: 800px;
+}
+.parallax {
+background-image: url("library/index/team-pic.jpg");
+min-height: 500px;
+position: relative;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gallery img {
+max-width:200px !important;
+width: 66.6% !important;
+height: 100% !important;
+
+
+}
+.parallax::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.25);
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<style>
+.mapbox-srcd {
+width: 60%;
+height: 800px;
+}
+
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="nav-placeholder"></div>
+<div class="parallax">
+
+<div class="centered-proj"><p><h1 style="color:white;text-align:center">Join ITE</h1></p>
+</div>
+</div>
+
+<div class="body-lato">
+<div id="spacer" style="height: 20px; width: 100dw;"></div>
+<!-- Begin About Section (add to top) -->
+<h1 style='text-align:center; float:center'>Join the USC Institute of Transportation Engineers!</h1>
+<br clear='all'>
+<p>Interested in transportation? Planning? Working on projects that could change our cities? Want to join a network of professionals and students interested in pursuing a career in transportation or urban planning? If any of these catch your eye, then you should definitely join ITE</p>
+<p>Learn more about our club by joining our email list, navigating our website, and keeping yourself updated on our events through our Facebook page. We welcome all new members, and joining is free and low committment.</p>
+<button href="https://forms.gle/TQKCiMyscURNHgGMA">Join our Email List</button>
+<!-- End Project Section -->
+<div style="" id="footer"></div>
+</div>
+<script>
+
+$(function(){
+  $("#nav-placeholder").load("https://iteusc.com/assets/navbar.html");
+});
+$(function(){
+  $("#footer").load("https://iteusc.com/assets/footer.html");
+});
+
+
+</script>
+
+</body>
+</html>
