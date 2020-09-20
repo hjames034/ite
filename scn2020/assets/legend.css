@@ -1,0 +1,80 @@
+.residential {
+  height: 25px;
+  width: 25px;
+  background-color: #3e8e8c;
+  border-radius: 50%;
+  display: inline-block;
+}
+.commercial {
+  height: 25px;
+  width: 25px;
+  background-color: #1d5596;
+  border-radius: 50%;
+  display: inline-block;
+}
+.transit {
+  height: 25px;
+  width: 25px;
+  background-color: #f22c2c;
+  border-radius: 50%;
+  display: inline-block;
+}
+.destination {
+  height: 25px;
+  width: 25px;
+  background-color: #171716;
+  border-radius: 50%;
+  display: inline-block;
+}
+.industrial {
+  height: 25px;
+  width: 25px;
+  background-color: #e5ca1f;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+hr.typea {
+  border-top: 2px solid #1c10bc;
+width:50px;
+float: left;
+}
+hr.typeb {
+  border-top: 2px solid #8866f0;
+width:50px;
+float: left;
+}
+hr.typec {
+  border-top: 2px solid #88adf6;
+width:50px;
+float: left;
+}
+hr.typed {
+  border-top: 2px solid #3ad4f2;
+width:50px;
+float: left;
+}
+hr.typee {
+  border-top: 2px solid #3940f9;
+width:50px;
+float: left;
+}
+hr.typem {
+  border-top: 2px solid #0bda84;
+width:50px;
+float: left;
+}
+hr.types {
+  border-top: 2px solid #d3d963;
+width:50px;
+float: left;
+}
+hr.typet {
+  border-top: 2px solid #f62828;
+width:50px;
+float: left;
+}
+bg-svg-img {
+background-size: 30px 30px;
+}
+

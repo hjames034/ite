@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>USC ITE Southern California Student Chapter Night</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+	body { margin: 0; padding: 0; }
+	.mapbox-srcd { width: 400px; height: 300px }
+#blog-area button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.map {
+width: 400px;
+height: 800px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<style>
+.mapbox-srcd {
+width: 60%;
+height: 800px;
+}
+
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="nav-placeholder"></div>
+<div class="w3-main">
+<div class="body"><h1>Blog</h1>
+<div id='blog-area' style="margin: 25px 50px 75px 25px;"></div>
+<div id='bottom' style="padding: 25px 50px 75px 25px;"><button class="w3-button w3-black" style="width:100%;" id='load-more'><center class='w3-large'>Load More...</center></button>
+</div>
+<div id="footer"></div>
+</div>
+<script>
+
+$(function(){
+  $("#nav-placeholder").load("https://iteusc.com/assets/navbar.html");
+});
+$(function(){
+  $("#footer").load("https://iteusc.com/assets/footer.html");
+});
+
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+  <!--Configure firebase-->
+  <script>
+    // Visit https://console.firebase.google.com/project/<your project id>/overview and click on "Add Firebase to your web app"
+    var config = {
+      apiKey: "AIzaSyCPPaxyqvEpYaeyhOlUZ0W9dmfROW4trpc",
+    authDomain: "la-ITE-micromobility.firebaseapp.com",
+    databaseURL: "https://la-ite-micromobility.firebaseio.com/",
+    storageBucket: "la-ite-micromobility.appspot.com"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+//global var
+var lengthBlog = 0;
+var postListLength = 3;
+var listUser = new Array();
+document.addEventListener("DOMContentLoaded", function(){
+//var listUser = new Array();
+var userReference = firebase.database().ref('posts').orderByKey();
+userReference.once('value')
+.then( function(snapshot) {
+
+snapshot.forEach(function(childSnapshot) {
+var cdnKEY = childSnapshot.key; //sent to cdn page
+var title = childSnapshot.child('title').val();
+var preview = childSnapshot.child('preview').val();
+var author = childSnapshot.child('author').val();
+var date = childSnapshot.child('date').val();
+//object.titl
+var blogPost = "<h2>"+title+"</h2><em>"+author+"</em><br><p>"+preview+"</p><button id='"+cdnKEY+"'>Read More</button><br><p>"+date+"</p><hr>";
+listUser.push(blogPost);
+
+
+});
+lengthBlog = listUser.length - 1;
+//alert(listUser);
+addContent(listUser);
+function addContent (userList) {
+oldValue = lengthBlog;
+
+while( lengthBlog > oldValue - postListLength && lengthBlog >= 0) {
+document.getElementById('blog-area').innerHTML += userList[lengthBlog];
+lengthBlog--;
+}
+if (lengthBlog < 0 ) {
+document.getElementById('blog-area').innerHTML += "Reached oldest post!";
+document.getElementById('bottom').innerHTML = "";
+
+}
+}
+addListeners();
+});
+});
+function addListeners() {
+var userReference = firebase.database().ref('posts').orderByKey();
+userReference.once('value')
+.then( function(snapshot) {
+
+snapshot.forEach(function(childSnapshot) {
+var cdnKEY = childSnapshot.key; //sent to cdn page
+try {
+document.getElementById(cdnKEY).addEventListener("click", function(){
+//alert('event listener added!');
+genPage(cdnKEY);
+function genPage(cdnkey) {
+//alert('Retrieving post data...');
+var pageRef = firebase.database().ref('posts/'+cdnkey);
+pageRef.on('value', function(snapshot) {
+//alert('THIS IS BEING PERFORMED:'+snapshot.val())
+  var title = snapshot.child('title').val();
+var article = "<a href='blog.html'>Back to Main Blog</a><br><h1>"+title+"</h1>"
+var author =snapshot.child('author').val();
+var preview = snapshot.child('preview').val();
+var date = snapshot.child('date').val();
+article += "<small>"+author+ " | "+date+"</small>";
+article += "<p><em>"+preview+"</em></p>"
+var content = snapshot.child('body').val();
+article += "<div>"+content+"</div>";
+document.getElementById('blog-area').innerHTML=article;
+document.getElementById('bottom').innerHTML = "";
+});
+}
+});
+}
+catch(err) {
+console.log('NOT in article-list');
+
+}
+});
+});
+}
+
+document.querySelector('#load-more').addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+addContent(listUser);
+function addContent (userList) {
+oldValue = lengthBlog;
+while( lengthBlog > oldValue - postListLength && lengthBlog >= 0) {
+document.getElementById('blog-area').innerHTML += userList[lengthBlog];
+lengthBlog--;
+}
+if (lengthBlog < 0 ) {
+document.getElementById('blog-area').innerHTML += "Reached oldest post!";
+document.getElementById('bottom').innerHTML = "";
+
+}
+}
+addListeners();
+});
+</script>
+</body>
+</html>

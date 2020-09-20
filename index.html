@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>USC ITE</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+<style>
+	body { margin: 0; padding: 0; }
+	.mapbox-srcd { width: 400px; height: 300px }
+.map { 
+width: 400px;
+height: 800px;
+}
+.parallax {
+background-image: url("library/index/losangeles.jpg");
+min-height: 500px; 
+position: relative;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.25);
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<style>
+.mapbox-srcd { 
+width: 60%;
+height: 800px;
+}
+
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="nav-placeholder"></div>
+<div class="parallax">
+
+<div class="centered-proj" style="font-family:Lato;"><p><h1 style="color:white;text-align:center">USC Institute of Transportation Engineers</h1></p><p class="" style="color:white;text-align:center;"><h3 style="color:white;text-align:center;">At the forefront of transportation engineering and planning</h3></p>
+</div>
+</div>
+
+<div class="body-lato">
+<div id="spacer" style="height: 20px; width: 100dw;"></div>
+<div id="blurb"><h1 style="text-align:center;">What We Do</h1>
+<p style="text-align:center;">We are a group of student engineers, planners, and thinkers who aim to reimagine transportation systems. We recognize the inter-disciplinary nature of Transportation Engineering, and hope to foster discussion on and work on projects relating to "hot" transportatiom issues such as "smart" systems, micromobility, and equity in transportation access. We work with industry experts to reimagine the streetscape, and engage in a dialogue with other ITE teams all over the country.</p>
+<div id="spacer" style="height: 20px; width: 100dw;"></div>
+</div>
+
+<div class="meet"><div class="left-text"><h2>We're not just engineers</h2>
+<p>Tranportation engineering is often seen as a very quantitative process, involving Level of Service calculations and road geometry measurements. However, transportation engineering is so much more than that. It requires planners, data scientists, historians, and so much more. Our 2020-2021 e-board reflects the interdisciplinary nature of Transportation Engineering, and we hope to further diversify our perspectives through our members in the coming years.</p>
+<p><a href="about.html">Meet our Team -></a></p></div>
+<div class="right-img"><img src="library/index/team-pic.jpg" style="height:350px; width: auto;"></img></div>
+<div id="spacer" style="height: 20px; width: 100dw;"></div>
+</div>
+
+<div class="projects">
+<div class="left-img"><img src="library/project-thumbnails/bridger-main.jpg"></img></div>
+<div class="right-text"><h2>Our Projects</h2>
+<p>Throughout the year, ITE participates in several projects. These projects are inter-disciplinary by nature, involving both quantitative, big-data, analysis, and also qualitative research into social and political issues. Examples of our projects include our Annual Student Chapter Night Presentation </p>
+<p><a href="projects.html">See our projects -></a></p></div>
+
+<div id="spacer" style="height: 20px; width: 100dw;"></div>
+</div>
+<div class="blog"><div class="left-text"><h2>Articles and Writeups</h2>
+<p>For more updates on our projects, trips, and activities, take a peek at our blog! </p>
+<p><a href="blog.html">Read more of our posts -></a></p></div>
+<div class="right-img"><img src="library/blog-cover.jpg" style="height:350px; width: auto;"></img></div>
+</div>
+
+
+</div>
+
+<div id="footer"></div>
+</div>
+<script>
+
+$(function(){
+  $("#nav-placeholder").load("https://iteusc.com/assets/navbar.html");
+});
+$(function(){
+  $("#footer").load("https://iteusc.com/assets/footer.html");
+});
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>USC ITE Southern California Student Chapter Night</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://iteusc.com/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+	body { margin: 0; padding: 0; }
+	.mapbox-srcd { width: 400px; height: 300px }
+.map { 
+width: 400px;
+height: 800px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<style>
+.mapbox-srcd { 
+width: 60%;
+height: 800px;
+}
+
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="nav-placeholder"></div>
+<div class="w3-main">
+<div class="body"><h2>Redesigning Streets for Micromobility</h2>
+<p><h4>Abstract:</h4></p>
+<p>Traditionally, road designs follow design standards that take a more conservative approach, such as NACTO and AASHTO. Upon examination, we found that these existing standards are based on decade old data points that do not reflect the recent advancement of micromobility demand in our urban landscape. In response to the ITE challenge to better incorporate current and future micromobility options into our cities’ infrastructures, we are proposing an innovative-design solution that demonstrates how design standards can be updated to improve efficiency and safety, through the calibration of real-time usage data. </p>
+<p><h4>Project Components:</h4></p>
+<p><h4>Project Resources:</h4></p>
+<p><a href="https://iteusc.com/library/bridger-main/final.pdf">Read the Project Report [PDF]</a></p>
+</div>
+<div id="footer"></div>
+</div>
+<script>
+
+$(function(){
+  $("#nav-placeholder").load("https://iteusc.com/assets/navbar.html");
+});
+$(function(){
+  $("#footer").load("https://iteusc.com/assets/footer.html");
+});
+
+
+</script>
+
+</body>
+</html>

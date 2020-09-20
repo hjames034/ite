@@ -1,0 +1,57 @@
+
+<html>
+
+<head>
+  <title>Viewer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+</head>
+
+<body>
+<h1>Blog Writer</h1>
+<br><a href="login.html">Back to Main Login Page</a>
+<h2>Blog Posts</h2>
+  <div id="blog-area"></div>
+
+
+  <!--Include firebase.js  -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+  <!--Configure firebase-->
+  <script>
+    // Visit https://console.firebase.google.com/project/<your project id>/overview and click on "Add Firebase to your web app"
+    var config = {
+      apiKey: "AIzaSyCPPaxyqvEpYaeyhOlUZ0W9dmfROW4trpc",
+    authDomain: "la-ITE-micromobility.firebaseapp.com",
+    databaseURL: "https://la-ite-micromobility.firebaseio.com/",
+    storageBucket: "la-ite-micromobility.appspot.com"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+var userReference = firebase.database().ref('posts').orderByKey();
+userReference.once('value')
+.then( function(snapshot) {
+alert('Retrieving post data...');
+
+snapshot.forEach(function(childSnapshot) {
+var title = childSnapshot.child('title').val();
+var content = childSnapshot.child('body').val();
+var author = childSnapshot.child('author').val();
+var date = childSnapshot.child('date').val();
+var preview = childSnapshot.child('preview').val();
+//object.title
+var blogPost = "<h1>"+title+"</h1><br><b>"+author+"</b><br><p>"+preview+"</p><p>"+content+"</p><br><p>"+date+"</p><hr>";
+var elem = document.getElementById('blog-area').innerHTML += blogPost;
+
+});
+});
+});//end viewer
+</script>
+
+</body>
+
+</html>

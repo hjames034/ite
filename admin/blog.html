@@ -1,0 +1,102 @@
+<html>
+
+<head>
+  <title>Blog</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+</head>
+
+<body>
+<h1>Blog Writer</h1>
+<br><a href="login.html">Back to Main Login Page</a>
+<br><a href="viewer.html">See blog posts in basic html</a>
+<h2>Composer Tips</h2>
+<pre>To write paragraphs, use the &lt;p&gt; tag to start a paragraph, and the &lt;/p&gt; tag to end a paragraph.</pre>
+<br>
+<pre>Example:&lt;p&gt;This is a paragraph&lt;/p&gt;</pre>
+<br>
+<pre>To bold, use the &lt;b&gt; tag to start bolded area, and the &lt;/b&gt; tag to end it. Similarly, use &lt;em&gt; to start italicizing and &lt;/em&gt; to end italicizing.</pre>
+<br>
+<pre>&ltbp&gt;<b>This is bolded</b>&lt;/b&gt; &lt;em&gt;<em>this is italicized&lt;/em&gt;</em>&lt;u&gt;<u>this is underlined</u>&lt;/u&gt;</pre>
+<br>
+<pre>Finally, to link to a page, use the &lt;a<a href="https://yourwebpagehere"> tag.</pre>
+<br>
+<pre>Example: &lt;a href="https://iteusc.com" &gt;<a href="https://iteusc.com">Link to Homepage</a>&lt;/a&gt;</pre>
+<br>
+<pre>For now, to add images you need to use the img tag. Please copy the code below and only change the source (src) of the tag, as the rest of the img tag is important for formatting purposes.</pre>
+<br>
+<pre>&lt;img src="#" style='width: 0%;height: auto;' &gt;&lt;/img&gt;</pre>
+
+<h2>Blog Post</h2>
+  <form>
+    <div>
+      Title:<input id="title" type="text" placeholder="Title...">
+    </div>
+<div>
+Summary:<textarea id="preview" placeholder="A short (2-3 sentence summary)..." rows="4" cols="50"></textarea>
+</div>
+<div>
+Content:<textarea id="content" placeholder="Post Content..." rows="20" cols="50"></textarea>
+</div>
+<div>
+Tag:<input id="tag" type="text" placeholder="event, reimagining streets, analysis, personal...">
+</div>
+    <div>
+<button id="blog-post">Post!</button>
+    </div>
+
+  </form>
+<div id="blog-area"></div>
+
+
+  <!--Include firebase.js  -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+  <!--Configure firebase-->
+  <script>
+    // Visit https://console.firebase.google.com/project/<your project id>/overview and click on "Add Firebase to your web app"
+    var config = {
+      apiKey: "AIzaSyCPPaxyqvEpYaeyhOlUZ0W9dmfROW4trpc",
+    authDomain: "la-ITE-micromobility.firebaseapp.com",
+    databaseURL: "https://la-ite-micromobility.firebaseio.com/",
+    storageBucket: "la-ite-micromobility.appspot.com"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+document.querySelector('#blog-post').addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var title = document.querySelector('#title').value;
+alert(title);
+var content = document.querySelector('#content').value;
+var preview = document.querySelector('#preview').value;
+var tag = document.querySelector('#tag').value;
+	var user=firebase.auth().currentUser;
+	var uid = user.uid;
+var d = new Date();
+var unique_identifier = d.getTime();
+var userReference = firebase.database().ref('users/' + uid);
+userReference.on('value', function(snapshot) {
+alert('Retrieving user data...');
+var userName = updateName(snapshot.child('username').val());
+alert(userName);
+var test = writePost(title,content,userName, preview, d, tag);
+alert(test);
+function updateName(name) {
+names = name;
+return names;
+}
+function writePost(title,content,userName,preview,d,tag) {
+  firebase.database().ref('posts/' + unique_identifier).update({title: title, body: content, author: userName, date: d,preview: preview,tag: tag});
+return 'Blog Posted';
+}
+});
+});//end change bio
+</script>
+
+</body>
+
+</html>

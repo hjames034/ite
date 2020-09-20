@@ -1,0 +1,183 @@
+<html>
+
+<head>
+  <title>Update Your Information</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+</head>
+
+<body>
+<a href="login.html">Go to Admin Home Page</a>
+<div id="demo"></div>
+<h2>Edit Profile:</h2>
+  <form>
+    <div>
+      Edit Bio:<input id="bio" type="text" placeholder="Short bio...">
+    </div>
+    <div>
+<button id="change-bio">Change Bio</button><br><br>
+    </div>
+
+  </form>
+  <form>
+    <div>
+      Change your Name:<input id="name" type="text" placeholder="Display Name...">
+    </div>
+    <div>
+<button id="change-name">Change Name</button><br><br>
+    </div>
+
+  </form>
+<form>
+<button id="sign-out">Sign out</button><br><br></form>
+<div id="demo"></div>
+
+
+  <!--Include firebase.js  -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+  <!--Configure firebase-->
+  <script>
+    // Visit https://console.firebase.google.com/project/<your project id>/overview and click on "Add Firebase to your web app"
+    var config = {
+      apiKey: "AIzaSyCPPaxyqvEpYaeyhOlUZ0W9dmfROW4trpc",
+    authDomain: "la-ITE-micromobility.firebaseapp.com",
+    databaseURL: "https://la-ite-micromobility.firebaseio.com/",
+    storageBucket: "la-ite-micromobility.appspot.com"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!--Handle auth events-->
+  <script>
+document.querySelector('#sign-out').addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+firebase.auth().signOut();
+window.location.replace("https://iteusc.com/admin/login.html");
+});
+//add event listener to change-bio
+document.querySelector('#change-bio').addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var bio = document.querySelector('#bio').value;
+	var user=firebase.auth().currentUser;
+	var uid = user.uid;
+	var name = user.displayName;
+	var email = user.email;
+	writeUserData(uid, bio);
+//writeUserData function
+function writeUserData(userId, bio) {
+  firebase.database().ref('users/' + userId).update({bio: bio});
+}
+//end write user data function
+var bioSRC = 'This appears iuf updateBio is broken when person updates bio';
+var names = "Test Names";
+var bioSRC ='Testing BIOSRC';
+var names = 'Test Name';
+var userReference = firebase.database().ref('users/' + uid);
+userReference.on('value', function(snapshot) {
+//alert('THIS IS BEING PERFORMED:'+snapshot.val())
+  var biography = updateBio(snapshot.child('bio').val());
+var userName = updateName(snapshot.child('username').val());
+function updateBio(bio) {
+bioSRC = bio;
+return bioSRC;
+//alert(bioSRC);
+}
+function updateName(name) {
+names = name;
+return names;
+
+//alert(names);
+}
+document.getElementById("demo").innerHTML = "<h4>Current Display Name</h4>"+userName+"<br>Email:"+email+"<br>Bio:"+biography;
+});
+});//end change bio
+
+//begin change-name
+document.querySelector('#change-name').addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var dispName = document.querySelector('#name').value;
+  var user=firebase.auth().currentUser;
+var uid = user.uid;
+	var name = user.displayName;
+	var email = user.email;
+	writeName(uid, dispName);
+  function writeName(userId, dispName) {
+  firebase.database().ref('users/' + userId).update({username: dispName});
+}
+var bioSRC ='Testing BIOSRC';
+var names = 'Test Name';
+var userReference = firebase.database().ref('users/' + uid);
+userReference.on('value', function(snapshot) {
+//alert('THIS IS BEING PERFORMED:'+snapshot.val())
+  var biography = updateBio(snapshot.child('bio').val());
+var userName = updateName(snapshot.child('username').val());
+function updateBio(bio) {
+bioSRC = bio;
+return bioSRC;
+//alert(bioSRC);
+}
+function updateName(name) {
+names = name;
+return names;
+
+//alert(names);
+}
+document.getElementById("demo").innerHTML = "<h4>Current Display Name</h4>"+userName+"<br>Email:"+email+"<br>Bio:"+biography;
+});
+});//end change-name
+
+  </script>
+<script>
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+
+var email = user.email;
+var bioSRC ='Testing BIOSRC';
+var names = 'Test Name';
+var userReference = firebase.database().ref('users/' + uid);
+userReference.on('value', function(snapshot) {
+//alert('THIS IS BEING PERFORMED:'+snapshot.val())
+  var biography = updateBio(snapshot.child('bio').val());
+var userName = updateName(snapshot.child('username').val());
+function updateBio(bio) {
+bioSRC = bio;
+return bioSRC;
+//alert(bioSRC);
+}
+function updateName(name) {
+names = name;
+return names;
+
+//alert(names);
+}
+document.getElementById("demo").innerHTML = "<h4>Current Display Name</h4>"+userName+"<br>Email:"+email+"<br>Bio:"+biography;
+});
+}
+    // ...
+   else {
+document.getElementById("demo").innerHTML = "No info, you are logged out!";
+    // User is signed out.
+    // ...
+  }
+});
+</script>
+
+  <!--Handle page events-->
+
+
+</body>
+
+</html>

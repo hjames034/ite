@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>USC ITE Southern California Student Chapter Night</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://iteusc.com/assets/format.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+<style>
+	body { margin: 0; padding: 0; }
+	.mapbox-srcd { width: 400px; height: 300px }
+.map { 
+width: 400px;
+height: 800px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<style>
+.mapbox-srcd { 
+width: 60%;
+height: 800px;
+}
+
+.mapboxgl-popup {
+max-width: 400px;
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+</style>
+<div id="nav-placeholder"></div>
+<div class="w3-container">
+<div class="body"><div id="projectSidebar"></div><div class="design">E-Scooter Docking Stations
+<p><img src="../library/2020scn/parking-zone.jpg" width=100%></img>
+<p>We are suggesting the use of docking zones, as in the photo displayed above. We recommend a partnership with local governments and e-scooter companies to introduce the use of RFID  (Radio Frequency Identification) & GPS technology to enforce zones</p>
+<li>
+<ol>The cost of each e-scooter parking zone is about $500-$1000, with a $2 cost per scooter for RFID tags. In comparison, bike docks for about 15 bikes cost $40,000 (washington post)</ol>
+<ol>The purpose of these parking zones is to  keep sidewalks clear, preventing injuries and vehicle damage.</ol>
+<ol>Riders are still able to leave e-scooters outside of the indicated zones, but they will be subject to fines.</ol>
+</li>
+</div>
+<div class="density">Density Calculations
+<p>Successful micromobility systems typically have a density that minimizes walking time to a scooter. The goal of making dense systems is to reduce the additional
+time cost incurred by walking to and from a scooter station; an ideal system would be one where the user has to walk no more than 2 minutes to reach a scooter dock. This is why our proposed approach prioritizes
+smaller and more frequent stations over larger and more spread out ones. While we will have larger stations in our network, these larger stations will be located at major hubs where there is a high demand for scooters.</p>
+<p>However, when analyzing census data in the city of LA, we realized that there were many different densities and neighborhoods throughout the county. Thus, we could not take a one-size-fits-all approach for the number of scooters in each neighborhood. Some areas would
+inherently have more demand for scooters, while other ares would have lower demand. Some types of land use, such as the mixed-use area of Downtown Los Angeles, and the student neighborhood of University Park, would generate more trips and thus
+warrant a higher density of scooters per 1000 people. Additionally, even on a sub-neighborhood level, different blocks may have different uses. Using the example of University Park, the "USC Village" is a high-density, mixed-use, student-oriented development that would likely 
+require multiple large stations in close proximity to one another, while 30th Street and Figureoa has a low-density commercial use that generates fewer trips.</p>
+<p> Thus, when making our density calculations, we decided to supplant the residential density with additional information we gathered from other demographic sources; we found that mixed-use neighborhoods and neighborhoods with "educational" centers see a large influx of people during the work/school day. This 
+impacts the density of the neighborhood significantly. For example, the residential density of downtown Los Angeles is 8000 ppl/sq mi, but the fact that there are 500,000 jobs in downtown Los Angeles, of which at least 60% are during the day, gives downtown Los Angeles a density of over 50,000 ppl/sq mi during peak (working) hours. 
+Thus, we used the "peak-hour density" when determining the minimum ratio per 1000 people for scooter stations. </p>
+<p> Finally, rather than calculating specific ratios by neighborhood, we decided to provide a baseline ratio of scooters per 1000 people guideline for various land-uses using a decision matrix. This will make it easier to scale our scooter implementation plan to different areas. Our decision matrix is below. </p>
+<h4>Neighborhood</h4>
+<table border="1" cellpadding="2" cellspacing="0">
+<tr style="font-weight: bold; background-color: #aaa;">
+<td>Neighborhood Type </td><td>Ratio of scooters per 1000 people</td>
+</tr>
+<tr style="background-color: #f0f0f0">
+<td>Industrial</td><td align="right">10</td>
+</tr>
+<tr style="background-color: #ffffff">
+<td>Commercial(primarily)</td><td align="right">20</td>
+</tr>
+<tr style="background-color: #f0f0f0">
+<td>Residential Mixed use</td><td align="right">30</td>
+</tr>
+<tr style="background-color: #ffffff">
+<td>Young Population Urban Mixed Use</td><td align="right">35</td>
+</tr>
+<tr style="background-color: #f0f0f0">
+<td>University/Mixed Use Walkable</td><td align="right">40</td>
+</tr>
+</table>
+</div>
+<div class="ridershipCalculations">Ridership Calculations
+<p>To calculate the amount of ridership in each neighborhood, we first adjusted the population based on the proximity to landmarks that we identified. Examples of this include schools, universities, and transit stations. We assigned values to these various locations, which serve as multipliers for the population. Using LA census tract data, we calculated the new population for the impacted census tracts. From here, we used a baseline assumption of 15% of the population being interested in using scooters, as it fits their mode type. While this model doesn't account for specific commute or push/pull factors, we believe that we can get a more useful estimate of ridership. </p>
+
+</div>
+<div id="footer"></div></div>
+<script>
+$(function(){
+  $("#projectSidebar").load("https://iteusc.com/assets/scn2020/projectSidebar.html");
+});
+$(function(){
+  $("#nav-placeholder").load("https://iteusc.com/assets/navbar.html");
+});
+$(function(){
+  $("#footer").load("https://iteusc.com/assets/footer.html");
+});
+
+
+</script>
+
+</body>
+</html>
